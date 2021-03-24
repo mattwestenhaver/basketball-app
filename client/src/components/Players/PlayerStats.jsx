@@ -23,8 +23,8 @@ function PlayerStats({ players, removePlayer }) {
                                     <th>BLK</th>
                                     <th>TO</th>
                                     <th>FG%</th>
-                                    <th>FT%</th>
                                     <th>3P%</th>
+                                    <th>FT%</th>
                                 </tr>
                                 {players.map((player, index) => {
                                     return (
@@ -42,8 +42,8 @@ function PlayerStats({ players, removePlayer }) {
                                             <td>{player.averages.blk || "N/A"}</td>            
                                             <td>{player.averages.turnover || "N/A"}</td>            
                                             <td>{player.averages.fg_pct || "N/A"}</td>            
-                                            <td>{player.averages.ft_pct || "N/A"}</td>            
                                             <td>{player.averages.fg3_pct || "N/A"}</td>            
+                                            <td>{player.averages.ft_pct || "N/A"}</td>            
                                         </tr>
                                     )
                                 })}

@@ -10,8 +10,8 @@ const statOptions = [
     { key: 'blk', value: 'blk', text: 'Blocks'},
     { key: 'turnover', value: 'turnover', text: 'Turnovers'},
     { key: 'fg_pct', value: 'fg_pct', text: 'Field Goal %'},
-    { key: 'ft_pct', value: 'ft_pct', text: 'Free Throw %'},
     { key: 'fg3_pct', value: 'fg3_pct', text: '3PT Field Goal %'},
+    { key: 'ft_pct', value: 'ft_pct', text: 'Free Throw %'},
 ]
 
 function Graphs({ players }) {
