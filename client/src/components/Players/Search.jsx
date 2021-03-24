@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import auth from '../../auth'
 
-function Search({ addPlayer }) {
+function Search({ addPlayer, playersLength }) {
     const [searchValue, setSearchValue] = useState("")
     const [searchResults, setSearchResults] = useState([])
 
@@ -13,25 +13,37 @@ function Search({ addPlayer }) {
     const getSearchResults = (value) => {
         auth.getPlayers(value).then(response => {
             if (response.success) {
-                setSearchResults(response.data)
+                if (value !== '') {
+                    setSearchResults(response.data)
+                } else {
+                    setSearchResults([])
+                }
             }
         })
     }
 
-    const handlePlayerSelect = (id) => {
-        addPlayer(id)
+    const handlePlayerSelect = (player) => {
+        if (playersLength < 5) {
+            addPlayer(player)
+        }
+        setSearchValue("")
+        setSearchResults([])
     }
 
     return (
-        <div>
+        <div className="search-container">
             <input name="Search" value={searchValue} placeholder="Search Player" onChange={handleSearchChange} />
-            <ul>
-                {searchResults.map((player, index) => {
-                    return (
-                        <li key={index} onClick={() => handlePlayerSelect(player.id)}>{player.first_name} {player.last_name}</li>
-                    )
-                })}
-            </ul>
+            {searchResults.length
+                ?   <ul className="search-results-list">
+                        {searchResults.map((player, index) => {
+                            return (
+                                <li key={index} onClick={() => handlePlayerSelect(player)}>{player.first_name} {player.last_name} - {player.team.abbreviation}</li>
+                            )
+                        })}
+                    </ul>
+                : null
+            }
+            
         </div>
     )
 }

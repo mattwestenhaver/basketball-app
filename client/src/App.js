@@ -1,22 +1,47 @@
 import React, { useState } from "react"
 import "./App.css"
 import Search from "./components/Players/Search"
-import Players from "./components/Players"
+import PlayerStats from "./components/Players/PlayerStats"
+import Graph from "./components/Graph"
+import auth from "./auth"
 
 function App() {
-    const [playerIds, setPlayerIds] = useState([])
+    const [players, setPlayers] = useState([])
 
-    const addPlayer = (id) => {
-        if (!playerIds.includes(id)) {
-            setPlayerIds([...playerIds, id])
+    const addPlayer = (player) => {
+        let exists = false
+        for (var i = 0; i < players.length; i++) {
+            if (players[i].info.id === player.id) {
+                exists = true
+                break
+            }
         }
+
+        if (!exists) {
+            auth.getPlayerStats(player.id)
+                .then((response) => {
+                    const playerData = {
+                        info: player,
+                        averages: response.averages,
+                        stats: response.stats,
+                    }
+                    setPlayers([...players, playerData])
+                })
+                .catch((err) => {
+                    return err
+                })
+        }
+    }
+
+    const removePlayer = (id) => {
+        setPlayers(players.filter((player) => player.info.id !== id))
     }
 
     return (
         <div className="App">
-            <h2>Basketball App</h2>
-            <Search addPlayer={addPlayer} />
-            <Players playerIds={playerIds} />
+            <Search addPlayer={addPlayer} playersLength={players.length} />
+            <PlayerStats players={players} removePlayer={removePlayer} />
+            <Graph players={players} />
         </div>
     )
 }
