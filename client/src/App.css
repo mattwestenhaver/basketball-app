@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    background-color: rgb(245, 245, 245);
+}
+
 .App {
     text-align: center;
 }
@@ -23,6 +27,8 @@
 }
 
 .search-results-list {
+    z-index: 1000;
+    background: white;
     width: 200px;
     border: 1px solid lightgray;
     border-radius: 4px;
@@ -38,6 +44,10 @@
 
 .search-results-list li:hover {
     text-decoration: underline;
+}
+
+.players-container {
+    margin-bottom: 60px;
 }
 
 .player-stats__container {
@@ -61,9 +71,11 @@
 }
 
 table {
+    background-color: white;
     border-collapse: collapse;
     text-align: left;
-    border: 1px solid black;
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 4px;
 }
 
 .table-labels {
@@ -72,7 +84,7 @@ table {
 
 th,
 td {
-    border: 1px solid black;
+    border: 1px solid rgb(100, 100, 100);
     padding: 5px 8px;
 }
 
@@ -81,8 +93,24 @@ td {
 }
 
 .graph-container {
+    background-color: white;
+    border-radius: 4px;
+    padding: 20px;
     width: fit-content;
     margin: 0 auto;
+    border: 1px solid rgb(100, 100, 100);
+}
+
+.dropdown-container {
+    margin: 0 auto;
+    width: 85%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.dropdown-container h4 {
+    margin: 10px 0 10px 15px;
 }
 
 .stats-graph {

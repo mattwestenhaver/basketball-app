@@ -14,47 +14,64 @@ const statOptions = [
     { key: 'ft_pct', value: 'ft_pct', text: 'Free Throw %'},
 ]
 
+const gameOptions = [
+    { key: 5, value: 5, text: 5 },
+    { key: 10, value: 10, text: 10},
+    { key: 15, value: 15, text: 15},
+    { key: 20, value: 20, text: 20},
+]
+
 function Graphs({ players }) {
     const [pointsData, setPointsData] = useState([])
     const [activeStat, setActiveStat] = useState('pts')
+    const [games, setGames] = useState(10)
     const colors = ['#2acaea', '#008000', '#a10505', '#8d52eb', '#ff3399']
 
     useEffect(() => {
         let graphData = []
 
         for (let i = 0; i < players.length; i++) {
-            for (let j = 0; j < players[i].stats.length; j++) {
+            let playerName = `${players[i].info.first_name} ${players[i].info.last_name}`
+            let tempStats = players[i].stats.slice(20 - games, players[i].stats.length)
+            for (let j = 0; j < tempStats.length; j++) {
                 if (!graphData[j]) {
                     graphData[j] = {
                         game: j
                     }
                 }
-                graphData[j][players[i].info.first_name + " " + players[i].info.last_name] = players[i].stats[j][activeStat]
+                graphData[j][playerName] = tempStats[j][activeStat]
             }
         }
 
         setPointsData(graphData)
-    }, [players, activeStat])
+    }, [players, activeStat, games])
 
     const handleChangeStat = (e, {value}) => {
         setActiveStat(value)
     }
 
+    const handleChangeGames = (e, {value}) => {
+        setGames(value)
+    }
+
+    const getStatText = () => {
+        return statOptions.filter(stat => stat.key === activeStat)[0].text
+    }
+
     return (
         players.length
             ?   <div className="graph-container">
-                    <h1>Stats over last 10 games</h1>
-                    <Dropdown selection name="stat" value={activeStat} options={statOptions} onChange={handleChangeStat} />
+                    <h2>{getStatText()} over last {games} games</h2>
+                    <div className="dropdown-container">
+                        <h4>Stat:</h4>
+                        <Dropdown selection name="stat" value={activeStat} options={statOptions} onChange={handleChangeStat} />
+                        <h4>Games:</h4>
+                        <Dropdown selection name="games" value={games} options={gameOptions} onChange={handleChangeGames} />
+                    </div>
                     <LineChart
-                        width={600}
+                        width={650}
                         height={400}
                         data={pointsData}
-                        margin={{
-                            top: 5,
-                            right: 30,
-                            left: 10,
-                            bottom: 5,
-                        }}
                         className="stats-graph"
                     >
                         <CartesianGrid strokeDasharray="3 3" />

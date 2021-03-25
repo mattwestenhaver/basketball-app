@@ -52,7 +52,7 @@ module.exports = {
                             return a.game.date > b.game.date ? 1 : -1
                         })
                         .slice(
-                            response.body.data.length - 10,
+                            response.body.data.length - 20,
                             response.body.data.length
                         ),
                 })

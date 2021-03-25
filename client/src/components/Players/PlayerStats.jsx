@@ -6,6 +6,10 @@ function PlayerStats({ players, removePlayer }) {
         removePlayer(id)
     }
 
+    const getPlayerString = (player) => {
+        return `${player.info.first_name} ${player.info.last_name} ${player.info.position ? `(${player.info.position})` : ''} - ${player.info.team.abbreviation}`
+    }
+
     return (
         players.length
             ?   <div className="players-container">
@@ -33,7 +37,7 @@ function PlayerStats({ players, removePlayer }) {
                                                 <VscChromeClose className="remove-player__icon" onClick={() => handleRemovePlayer(player.info.id)}/>
                                             </td>
                                             <th className="player-stats__header">
-                                                {player.info.first_name} {player.info.last_name} - {player.info.team.abbreviation}
+                                                {getPlayerString(player)}
                                             </th>
                                             <td>{player.averages.pts || "N/A"}</td>            
                                             <td>{player.averages.ast || "N/A"}</td>            
