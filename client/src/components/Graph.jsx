@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { LineChart, XAxis, YAxis, Legend, Tooltip, CartesianGrid, Line } from 'recharts'
 import { Dropdown } from 'semantic-ui-react'
+import BKNets from '../images/bk-nets.png'
 
 const statOptions = [
     { key: 'pts', value: 'pts', text: 'Points' },
@@ -24,7 +25,7 @@ const gameOptions = [
 function Graphs({ players }) {
     const [pointsData, setPointsData] = useState([])
     const [activeStat, setActiveStat] = useState('pts')
-    const [games, setGames] = useState(10)
+    const [gamesCount, setGamesCount] = useState(10)
     const colors = ['#2acaea', '#008000', '#a10505', '#8d52eb', '#ff3399']
 
     useEffect(() => {
@@ -32,7 +33,7 @@ function Graphs({ players }) {
 
         for (let i = 0; i < players.length; i++) {
             let playerName = `${players[i].info.first_name} ${players[i].info.last_name}`
-            let tempStats = players[i].stats.slice(20 - games, players[i].stats.length)
+            let tempStats = players[i].stats.slice(20 - gamesCount, players[i].stats.length)
             for (let j = 0; j < tempStats.length; j++) {
                 if (!graphData[j]) {
                     graphData[j] = {
@@ -44,14 +45,14 @@ function Graphs({ players }) {
         }
 
         setPointsData(graphData)
-    }, [players, activeStat, games])
+    }, [players, activeStat, gamesCount])
 
     const handleChangeStat = (e, {value}) => {
         setActiveStat(value)
     }
 
     const handleChangeGames = (e, {value}) => {
-        setGames(value)
+        setGamesCount(value)
     }
 
     const getStatText = () => {
@@ -61,12 +62,12 @@ function Graphs({ players }) {
     return (
         players.length
             ?   <div className="graph-container">
-                    <h2>{getStatText()} over last {games} games</h2>
+                    <h2>{getStatText()} over last {gamesCount} games</h2>
                     <div className="dropdown-container">
                         <h4>Stat:</h4>
                         <Dropdown selection name="stat" value={activeStat} options={statOptions} onChange={handleChangeStat} />
                         <h4>Games:</h4>
-                        <Dropdown selection name="games" value={games} options={gameOptions} onChange={handleChangeGames} />
+                        <Dropdown selection name="games" value={gamesCount} options={gameOptions} onChange={handleChangeGames} />
                     </div>
                     <LineChart
                         width={650}
@@ -92,7 +93,7 @@ function Graphs({ players }) {
                         })}
                     </LineChart>
                 </div>
-            : null
+            : <img className="brooklyn-nets__logo" src={BKNets} alt="Brooklyn Nets Logo" />
     )
 }
 

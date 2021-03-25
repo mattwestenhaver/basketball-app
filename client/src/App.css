@@ -3,10 +3,6 @@
     padding: 0;
 }
 
-body {
-    background-color: rgb(245, 245, 245);
-}
-
 .App {
     text-align: center;
 }
@@ -35,6 +31,17 @@ body {
     padding: 5px;
     position: absolute;
     list-style-type: none;
+}
+
+.centered {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.centered-results {
+    position: absolute;
+    left: 50%;
+    margin-left: -103px;
 }
 
 .search-results-list li {
@@ -115,4 +122,9 @@ td {
 
 .stats-graph {
     margin-top: 20px;
+}
+
+.brooklyn-nets__logo {
+    margin-top: 60px;
+    width: 35vw;
 }

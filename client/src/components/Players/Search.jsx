@@ -31,16 +31,18 @@ function Search({ addPlayer, playersLength }) {
     }
 
     return (
-        <div className="search-container">
+        <div className={`search-container ${playersLength === 0 ? 'centered' : ''}`}>
             <input name="Search" value={searchValue} placeholder="Search Player" onChange={handleSearchChange} />
             {searchResults.length
-                ?   <ul className="search-results-list">
-                        {searchResults.map((player, index) => {
-                            return (
-                                <li key={index} onClick={() => handlePlayerSelect(player)}>{player.first_name} {player.last_name} - {player.team.abbreviation}</li>
-                            )
-                        })}
-                    </ul>
+                ?   <div className={`${playersLength === 0 ? 'centered-results' : ''}`}>
+                        <ul className="search-results-list">
+                            {searchResults.map((player, index) => {
+                                return (
+                                    <li key={index} onClick={() => handlePlayerSelect(player)}>{player.first_name} {player.last_name} - {player.team.abbreviation}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
                 : null
             }
             
