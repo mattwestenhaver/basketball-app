@@ -33,6 +33,7 @@ function PlayerStats({ players, removePlayer }) {
             ?   <div className="players-container">
                     <div className="player-stats__container">
                         <h2>2020 Season Averages</h2>
+                        <p>(Click a stat to sort from high to low)</p>
                         <table>
                             <tbody>
                                 <tr className="table-labels">

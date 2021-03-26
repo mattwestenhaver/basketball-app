@@ -62,6 +62,10 @@
     margin: 20px auto;
 }
 
+.player-stats__container h2 {
+    margin-bottom: 5px;
+}
+
 .player-stats__row > td {
     text-align: center;
 }
@@ -94,7 +98,8 @@ table {
 }
 
 .active-stat {
-    background-color: greenyellow;
+    background-color: black;
+    color: white;
 }
 
 th,
