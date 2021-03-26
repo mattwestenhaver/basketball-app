@@ -2,6 +2,9 @@
 
 Created by [Matthew Westenhaver](https://github.com/mattwestenhaver/).
 
+You can view the deployed project [here](https://mw-basketball-app.herokuapp.com/).
+(It is deployed on a free instance so it may take ~15 seconds to spin up)
+
 ## About
 
 -   This project was created using React.js on the frontend and Node.js and express on the backend
