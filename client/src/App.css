@@ -140,4 +140,5 @@ td {
 .brooklyn-nets__logo {
     margin-top: 60px;
     width: 35vw;
+    max-width: 475px;
 }
