@@ -9,6 +9,14 @@ You can view the deployed project [here](https://mw-basketball-app.herokuapp.com
 
 -   This project was created using React.js on the frontend and Node.js and express on the backend
 -   Express.js serves both the client files and processes the API requests.
+-   This app allows the user to search for NBA players and displays their 2020 season (current season at time of app creation) averages in a table and recent game stats in a graph.
+-   When more than one NBA player is selected you can sort the data (from high to low) in the table by clicking on the various stats.
+-   The user can change which stat the graph shows and how many recent games it should show data for
+
+## Future Developments
+
+-   Add the ability to change the season that the app shows stats for
+-   Ability to search for teams and display all current players for the team
 
 ## Requirements
 
