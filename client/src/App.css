@@ -89,6 +89,14 @@ table {
     text-align: center;
 }
 
+.table-labels th {
+    cursor: pointer;
+}
+
+.active-stat {
+    background-color: greenyellow;
+}
+
 th,
 td {
     border: 1px solid rgb(100, 100, 100);
